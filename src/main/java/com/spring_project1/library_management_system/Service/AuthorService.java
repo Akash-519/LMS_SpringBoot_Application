@@ -14,10 +14,13 @@ public class AuthorService {
 
     public void addAuthor(Author author)
     {
+
         authorRepository.save(author);
     }
     public List<Author> getAuthors()
     {
+
+
         return authorRepository.findAll();
     }
 }

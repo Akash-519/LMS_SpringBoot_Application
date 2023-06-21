@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,11 +23,19 @@ public class Book {
     private int price;
     @Enumerated(EnumType.STRING)
     private Genre genre;
-
+    private boolean isIssued;
 
     @ManyToOne
     @JoinColumn
-    @JsonIgnore
+  //  @JsonIgnore
     Author author;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    List<Transaction> transaction = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn
+    LibraryCard card;
+
 
 }
